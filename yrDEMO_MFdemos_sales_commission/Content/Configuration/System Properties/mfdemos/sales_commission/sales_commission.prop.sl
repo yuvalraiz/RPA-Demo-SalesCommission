@@ -3,7 +3,12 @@ properties:
   - dbserver: db.mfdemos.com
   - dbuser: demouser
   - dbpassword:
-      value: ''
+      value: XXX
       sensitive: true
   - dbname: sales_commission
   - dbtable: demo-db
+  - email_addr: sales_operations@mfdemos.com
+  - email_password:
+      value: XXX
+      sensitive: true
+  - mailserver: mail.mfdemos.com
