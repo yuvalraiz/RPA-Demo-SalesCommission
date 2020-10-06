@@ -3,7 +3,7 @@ properties:
   - dbserver: db.mfdemos.com
   - dbuser: demouser
   - dbpassword:
-      value: XXXX
+      value: MFdemo.12345
       sensitive: true
   - dbname: sales_commission
   - dbtable: demo-db
