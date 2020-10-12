@@ -4,6 +4,14 @@ flow:
   inputs:
     - go_second
   workflow:
+    - Init_Variables:
+        do:
+          io.cloudslang.base.utils.do_nothing: []
+        publish:
+          - Message: This is the list
+        navigate:
+          - SUCCESS: is_true
+          - FAILURE: on_failure
     - is_true:
         do:
           io.cloudslang.base.utils.is_true:
@@ -37,10 +45,12 @@ flow:
           do:
             YuvalRaiz.Demo.Sales_Commission.Webinar2.GetAMCommisionTotal:
               - account_manager: '${am}'
+              - Message: '${Message}'
           break:
             - FAILURE
           publish:
             - msg
+            - Message: "${cs_append(Message,'\\n'+msg)}"
         navigate:
           - FAILURE: on_failure
           - SUCCESS: SUCCESS
@@ -69,42 +79,61 @@ flow:
         do:
           YuvalRaiz.Demo.Sales_Commission.Webinar2.GetAMCommisionTotal:
             - account_manager: '${account_manager}'
+            - Message: null
         publish:
           - msg
         navigate:
-          - FAILURE: on_failure
+          - FAILURE: sql_query
+          - SUCCESS: append_message
+    - append_message:
+        do:
+          io.cloudslang.base.utils.do_nothing:
+            - line_msg: '${msg}'
+            - Message: '${Message}'
+        publish:
+          - Message: "${cs_append(Message,'\\n'+line_msg)}"
+        navigate:
           - SUCCESS: sql_query
+          - FAILURE: on_failure
+  outputs:
+    - Message: '${Message}'
   results:
     - FAILURE
     - SUCCESS
 extensions:
   graph:
     steps:
+      is_true:
+        x: 200
+        'y': 187
       sql_query_all_rows:
-        x: 194
-        'y': 111
+        x: 379
+        'y': 74
       GetAMCommisionTotal:
-        x: 403
-        'y': 116
+        x: 537
+        'y': 78
         navigate:
           cc4f9309-ffc5-957f-051d-9abbcf1c4d44:
             targetId: 7b939900-c64f-4bd8-2df7-9f4b4c104c49
             port: SUCCESS
-      is_true:
-        x: 66
-        'y': 278
       sql_query:
-        x: 195
-        'y': 384
+        x: 463
+        'y': 273
         navigate:
           a08ba10c-09a7-e01f-22a3-1d33598d5e30:
             targetId: 7b939900-c64f-4bd8-2df7-9f4b4c104c49
             port: NO_MORE
       GetAMCommisionTotal_1:
-        x: 417
-        'y': 373
+        x: 456
+        'y': 443
+      Init_Variables:
+        x: 35
+        'y': 180
+      append_message:
+        x: 626
+        'y': 441
     results:
       SUCCESS:
         7b939900-c64f-4bd8-2df7-9f4b4c104c49:
-          x: 594
-          'y': 87
+          x: 798
+          'y': 190
