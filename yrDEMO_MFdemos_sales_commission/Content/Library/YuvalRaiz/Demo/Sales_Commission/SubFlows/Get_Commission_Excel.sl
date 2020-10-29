@@ -47,11 +47,11 @@ extensions:
   graph:
     steps:
       get_newest_relevant_email:
-        x: 62
-        'y': 120
+        x: 61
+        'y': 118
       get_mail_attachment:
         x: 334
-        'y': 120
+        'y': 119
         navigate:
           71e90981-5c56-2fda-1da5-fa704b976cea:
             targetId: 217df726-8818-ec29-9076-a8bcb5cb007a

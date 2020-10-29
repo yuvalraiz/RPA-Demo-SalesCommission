@@ -1,11 +1,11 @@
-namespace: YuvalRaiz.Demo.Sales_Commission.Webinar3
+namespace: YuvalRaiz.Demo.Sales_Commission.RPA_Activities
 operation:
-  name: webinar3_calc_commission
+  name: windows_calc_commission
   inputs:
-    - commission_rate: '20'
-    - deal_size: '2480'
+    - deal_size
+    - commission_rate
   sequential_action:
-    gav: 'com.microfocus.seq:YuvalRaiz.Demo.Sales_Commission.Webinar3.webinar3_calc_commission:1.0.0'
+    gav: 'com.microfocus.seq:YuvalRaiz.Demo.Sales_Commission.RPA_Activities.windows_calc_commission:1.0.0'
     skills:
       - Java
       - SAP NWBC Desktop
@@ -42,42 +42,40 @@ operation:
           id: '2'
           object_path: 'Window("Calculator").Static("calc_screen")'
           action: Type
-          args: 'Parameter("commission_rate")'
+          args: 'Parameter("deal_size")'
       - step:
           id: '3'
-          object_path: 'Window("Calculator").WinButton("Button_Div")'
+          object_path: 'Window("Calculator").WinButton("Button_multiple")'
           action: Click
+          snapshot: ".\\Snapshots\\ssf4.png"
+          highlight_id: '4522800'
       - step:
           id: '4'
           object_path: 'Window("Calculator").Static("calc_screen")'
           action: Type
-          args: '"100"'
+          args: 'Parameter("commission_rate")'
       - step:
           id: '5'
-          object_path: 'Window("Calculator").WinButton("Button_multiple")'
+          object_path: 'Window("Calculator").WinButton("Button_divid")'
           action: Click
+          snapshot: ".\\Snapshots\\ssf7.png"
+          highlight_id: '4588620'
       - step:
           id: '6'
           object_path: 'Window("Calculator").Static("calc_screen")'
           action: Type
-          args: 'Parameter("deal_size")'
+          args: '"100"'
       - step:
           id: '7'
-          object_path: 'Window("Calculator").WinButton("Button_equal")'
+          object_path: 'Window("Calculator").WinButton("Button_equel")'
           action: Click
-          snapshot: ".\\Snapshots\\ssf4.png"
-          highlight_id: '3605224'
       - step:
           id: '8'
-          object_path: 'Window("Calculator").Static("calc_screen")'
-          action: Click
-      - step:
-          id: '9'
           object_path: 'Window("Calculator").Static("calc_screen")'
           action: Output
           args: 'CheckPoint("return_number")'
       - step:
-          id: '10'
+          id: '9'
           object_path: 'Window("Calculator")'
           action: Close
   outputs:
@@ -133,7 +131,7 @@ object_repository:
                   type: STRING
               class: WinButton
               visual_relations: ''
-              last_update_time: 'Monday, October 12, 2020 12:10:01 PM'
+              last_update_time: 'Tuesday, October 13, 2020 8:47:23 AM'
               basic_identification:
                 property_ref:
                   - window id
@@ -142,7 +140,7 @@ object_repository:
                 ordinal_identifier: ''
           - object:
               smart_identification: ''
-              name: Button_equal
+              name: Button_equel
               child_objects: []
               properties:
                 - property:
@@ -177,7 +175,7 @@ object_repository:
                   type: STRING
               class: WinButton
               visual_relations: ''
-              last_update_time: 'Monday, October 12, 2020 12:10:01 PM'
+              last_update_time: 'Tuesday, October 13, 2020 8:47:23 AM'
               basic_identification:
                 property_ref:
                   - window id
@@ -186,7 +184,7 @@ object_repository:
                 ordinal_identifier: ''
           - object:
               smart_identification: ''
-              name: Button_Div
+              name: Button_divid
               child_objects: []
               properties:
                 - property:
@@ -221,7 +219,139 @@ object_repository:
                   type: STRING
               class: WinButton
               visual_relations: ''
-              last_update_time: 'Monday, October 12, 2020 12:10:01 PM'
+              last_update_time: 'Tuesday, October 13, 2020 8:47:23 AM'
+              basic_identification:
+                property_ref:
+                  - window id
+                  - text
+                  - nativeclass
+                ordinal_identifier: ''
+          - object:
+              smart_identification: ''
+              name: Button_4
+              child_objects: []
+              properties:
+                - property:
+                    value:
+                      value: '132'
+                      regular_expression: false
+                    name: window id
+                    hidden: false
+                    read_only: false
+                    type: NUMBER
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: text
+                    hidden: false
+                    read_only: false
+                    type: STRING
+                - property:
+                    value:
+                      value: Button
+                      regular_expression: false
+                    name: nativeclass
+                    hidden: false
+                    read_only: false
+                    type: STRING
+              comments: ''
+              custom_replay:
+                behavior:
+                  value: Button
+                  name: simclass
+                  type: STRING
+              class: WinButton
+              visual_relations: ''
+              last_update_time: 'Tuesday, October 13, 2020 8:47:23 AM'
+              basic_identification:
+                property_ref:
+                  - window id
+                  - text
+                  - nativeclass
+                ordinal_identifier: ''
+          - object:
+              smart_identification: ''
+              name: Button_2
+              child_objects: []
+              properties:
+                - property:
+                    value:
+                      value: '130'
+                      regular_expression: false
+                    name: window id
+                    hidden: false
+                    read_only: false
+                    type: NUMBER
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: text
+                    hidden: false
+                    read_only: false
+                    type: STRING
+                - property:
+                    value:
+                      value: Button
+                      regular_expression: false
+                    name: nativeclass
+                    hidden: false
+                    read_only: false
+                    type: STRING
+              comments: ''
+              custom_replay:
+                behavior:
+                  value: Button
+                  name: simclass
+                  type: STRING
+              class: WinButton
+              visual_relations: ''
+              last_update_time: 'Tuesday, October 13, 2020 8:47:23 AM'
+              basic_identification:
+                property_ref:
+                  - window id
+                  - text
+                  - nativeclass
+                ordinal_identifier: ''
+          - object:
+              smart_identification: ''
+              name: Button
+              child_objects: []
+              properties:
+                - property:
+                    value:
+                      value: '131'
+                      regular_expression: false
+                    name: window id
+                    hidden: false
+                    read_only: false
+                    type: NUMBER
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: text
+                    hidden: false
+                    read_only: false
+                    type: STRING
+                - property:
+                    value:
+                      value: Button
+                      regular_expression: false
+                    name: nativeclass
+                    hidden: false
+                    read_only: false
+                    type: STRING
+              comments: ''
+              custom_replay:
+                behavior:
+                  value: Button
+                  name: simclass
+                  type: STRING
+              class: WinButton
+              visual_relations: ''
+              last_update_time: 'Tuesday, October 13, 2020 8:47:23 AM'
               basic_identification:
                 property_ref:
                   - window id
@@ -257,7 +387,7 @@ object_repository:
                   type: STRING
               class: Static
               visual_relations: ''
-              last_update_time: 'Monday, October 12, 2020 12:10:01 PM'
+              last_update_time: 'Tuesday, October 13, 2020 8:47:23 AM'
               basic_identification:
                 property_ref:
                   - window id
@@ -304,7 +434,7 @@ object_repository:
             type: STRING
         class: Window
         visual_relations: ''
-        last_update_time: 'Monday, October 12, 2020 12:10:01 PM'
+        last_update_time: 'Tuesday, October 13, 2020 8:47:23 AM'
         basic_identification:
           property_ref:
             - regexpwndtitle
@@ -316,45 +446,6 @@ object_repository:
     - check_point_and_output:
         standard_properties:
           standard_property:
-            - value:
-                value: '76'
-                regular_expression: false
-                ignore_space: false
-                match_case: false
-                not_exact_match: false
-                formula: false
-              visual_relations: ''
-              parameter: ''
-              name: 'y'
-              flags: '2104'
-              inner_type: '3'
-              type: NUMBER
-            - value:
-                value: '37'
-                regular_expression: false
-                ignore_space: false
-                match_case: false
-                not_exact_match: false
-                formula: false
-              visual_relations: ''
-              parameter: ''
-              name: x
-              flags: '2104'
-              inner_type: '3'
-              type: NUMBER
-            - value:
-                value: '167'
-                regular_expression: false
-                ignore_space: false
-                match_case: false
-                not_exact_match: false
-                formula: false
-              visual_relations: ''
-              parameter: ''
-              name: width
-              flags: '2104'
-              inner_type: '3'
-              type: NUMBER
             - value: ''
               visual_relations: ''
               parameter:
@@ -366,7 +457,7 @@ object_repository:
                 formula: false
                 type: Parameter
               name: text
-              flags: '16696'
+              flags: '312'
               inner_type: '8'
               type: STRING
             - value:
@@ -448,45 +539,6 @@ object_repository:
               inner_type: '0'
               type: STRING
             - value:
-                value: '28'
-                regular_expression: false
-                ignore_space: false
-                match_case: false
-                not_exact_match: false
-                formula: false
-              visual_relations: ''
-              parameter: ''
-              name: height
-              flags: '2104'
-              inner_type: '3'
-              type: NUMBER
-            - value:
-                value: '0'
-                regular_expression: false
-                ignore_space: false
-                match_case: false
-                not_exact_match: false
-                formula: false
-              visual_relations: ''
-              parameter: ''
-              name: focused
-              flags: '2104'
-              inner_type: '11'
-              type: BOOL
-            - value:
-                value: '-1'
-                regular_expression: false
-                ignore_space: false
-                match_case: false
-                not_exact_match: false
-                formula: false
-              visual_relations: ''
-              parameter: ''
-              name: enabled
-              flags: '18488'
-              inner_type: '11'
-              type: BOOL
-            - value:
                 value: ''
                 regular_expression: false
                 ignore_space: false
@@ -503,16 +555,4 @@ object_repository:
         name: return_number
         type: Output
         class: VerifyObj
-  parameters:
-    - parameter:
-        default_value:
-          value: 'Parameter("return_number")'
-          parameter: 'Yes'
-        description: ''
-        name: return_number
-    - parameter:
-        default_value:
-          value: 'Parameter("return_number")'
-          parameter: 'Yes'
-        description: ''
-        name: return_number_0
+  parameters: []

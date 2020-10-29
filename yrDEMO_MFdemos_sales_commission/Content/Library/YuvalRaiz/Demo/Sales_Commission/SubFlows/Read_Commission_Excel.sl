@@ -32,6 +32,8 @@ flow:
         navigate:
           - FAILURE: on_failure
           - SUCCESS: SUCCESS
+  outputs:
+    - number_of_deals: '${rows_count}'
   results:
     - FAILURE
     - SUCCESS
@@ -39,8 +41,8 @@ extensions:
   graph:
     steps:
       get_cell:
-        x: 113
-        'y': 204
+        x: 99
+        'y': 205
       RegisterCommission:
         x: 350
         'y': 198

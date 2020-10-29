@@ -14,9 +14,14 @@ flow:
         do:
           YuvalRaiz.Demo.Sales_Commission.SubFlows.Read_Commission_Excel:
             - excel_input_file: '${excel_file_path}'
+        publish:
+          - number_of_deals
         navigate:
           - FAILURE: on_failure
           - SUCCESS: SUCCESS
+  outputs:
+    - number_of_deals: '${number_of_deals}'
+    - msg: "${'''Processed %s deals''' % (number_of_deals)}"
   results:
     - FAILURE
     - SUCCESS
@@ -24,10 +29,10 @@ extensions:
   graph:
     steps:
       Get_Commission_Excel:
-        x: 165
-        'y': 175
+        x: 166
+        'y': 174
       Read_Commission_Excel:
-        x: 364
+        x: 362
         'y': 177
         navigate:
           d6f1590c-1229-4487-bb4d-61b3a73d3555:

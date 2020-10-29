@@ -3,12 +3,12 @@ properties:
   - dbserver: db.mfdemos.com
   - dbuser: demouser
   - dbpassword:
-      value: MFdemo.12345
+      value: XXXX
       sensitive: true
   - dbname: sales_commission
   - dbtable: demo-db
   - email_addr: sales_operations@mfdemos.com
   - email_password:
-      value: XXXX
+      value: XXX
       sensitive: true
   - mailserver: mail.mfdemos.com

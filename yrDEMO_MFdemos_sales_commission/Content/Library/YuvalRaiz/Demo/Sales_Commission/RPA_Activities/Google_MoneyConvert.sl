@@ -1,19 +1,35 @@
-namespace: YuvalRaiz.Demo.Sales_Commission.Webinar3
+namespace: YuvalRaiz.Demo.Sales_Commission.RPA_Activities
 operation:
-  name: MoneyConvert
+  name: Google_MoneyConvert
   inputs:
-    - amount
-    - from_currency
-    - to_currency
-    - google_string:
+    - deal_size
+    - deal_currency
+    - to_currency: usd
+    - google_search_string:
         private: true
-        default: "${amount + ' ' + from_currency + ' to ' + to_currency}"
+        default: "${deal_size + ' ' + deal_currency + ' to ' + to_currency}"
+        required: false
   sequential_action:
-    gav: 'com.microfocus.seq:YuvalRaiz.Demo.Sales_Commission.Webinar3.MoneyConvert:1.0.0'
+    gav: 'com.microfocus.seq:YuvalRaiz.Demo.Sales_Commission.RPA_Activities.Google_MoneyConvert:1.0.0'
     skills:
+      - Java
+      - SAP
+      - SAP NWBC Desktop
+      - SAPUI5
+      - SAPWDJ
+      - SAPWebExt
+      - Terminal Emulators
       - Web
     settings:
+      sap:
+        active: false
+        auto_log_on: false
+        close_on_exit: false
+        ignore_existing_sessions: false
+        remember_password: false
       windows:
+        active: false
+      terminal_settings:
         active: false
       web:
         active: true
@@ -25,10 +41,10 @@ operation:
           id: '1'
           object_path: 'Browser("Google").Page("Google").WebEdit("Search")'
           action: Set
-          default_args: '"500 ils to inr"'
+          default_args: '"500 ils to usd"'
           snapshot: ".\\Snapshots\\ssf1.html"
           highlight_id: '10000000'
-          args: 'Parameter("google_string")'
+          args: 'Parameter("google_search_string")'
       - step:
           id: '2'
           object_path: 'Browser("Google").Page("Google").WebButton("Google Search")'
@@ -37,16 +53,16 @@ operation:
           highlight_id: '10000000'
       - step:
           id: '3'
-          object_path: 'Browser("Google").Page("500 ils to inr - Google").WebElement("10.801,17")'
+          object_path: 'Browser("Google").Page("500 ils to usd - Google").WebElement("147.44")'
           action: Output
-          default_args: 'CheckPoint("param1")'
+          default_args: 'CheckPoint("value_in_usd")'
   outputs:
-    - param1:
+    - value_in_usd:
         robot: true
-        value: '${param1}'
+        value: '${value_in_usd}'
     - return_result: '${return_result}'
     - error_message: '${error_message}'
-    - converted_amount: "${cs_replace(param1,',','',)}"
+    - value_in_usd_to_calc: "${cs_replace(value_in_usd,',','',)}"
   results:
     - SUCCESS
     - WARNING
@@ -253,7 +269,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: 'Sunday, October 11, 2020 8:38:23 PM'
+                    last_update_time: 'Tuesday, October 13, 2020 8:25:26 AM'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -316,7 +332,7 @@ object_repository:
                           type: BOOL
                       - property:
                           value:
-                            value: '416'
+                            value: '458'
                             regular_expression: false
                           name: view_y
                           hidden: true
@@ -404,7 +420,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '490'
+                            value: '532'
                             regular_expression: false
                           name: abs_y
                           hidden: true
@@ -422,7 +438,7 @@ object_repository:
                     custom_replay: ''
                     class: WebButton
                     visual_relations: ''
-                    last_update_time: 'Sunday, October 11, 2020 8:38:23 PM'
+                    last_update_time: 'Tuesday, October 13, 2020 8:25:26 AM'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -502,7 +518,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: '10025'
+                      value: '10034'
                       regular_expression: false
                     name: index
                     hidden: true
@@ -536,7 +552,7 @@ object_repository:
               custom_replay: ''
               class: Page
               visual_relations: ''
-              last_update_time: 'Sunday, October 11, 2020 8:38:23 PM'
+              last_update_time: 'Tuesday, October 13, 2020 8:25:26 AM'
               basic_identification:
                 property_ref:
                   - micclass
@@ -552,7 +568,7 @@ object_repository:
                     - url
                 algorithm: Mercury.TolerantPriority
                 active: true
-              name: 500 ils to inr - Google
+              name: 500 ils to usd - Google
               child_objects:
                 - object:
                     smart_identification:
@@ -569,7 +585,7 @@ object_repository:
                           - acc_name
                       algorithm: Mercury.TolerantPriority
                       active: true
-                    name: '10.801,17'
+                    name: '147.44'
                     child_objects: []
                     properties:
                       - property:
@@ -590,7 +606,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '10.801,17'
+                            value: '147.44'
                             regular_expression: false
                           name: innertext
                           hidden: false
@@ -630,7 +646,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '//DIV[@id="knowledge-currency__updatable-data-column"]/DIV/DIV/SPAN[normalize-space()="10.801,17"]'
+                            value: '//DIV[@id="knowledge-currency__updatable-data-column"]/DIV/DIV/SPAN[normalize-space()="147.44"]'
                             regular_expression: false
                           name: _xpath
                           hidden: true
@@ -640,7 +656,7 @@ object_repository:
                     custom_replay: ''
                     class: WebElement
                     visual_relations: ''
-                    last_update_time: 'Sunday, October 11, 2020 8:38:23 PM'
+                    last_update_time: 'Tuesday, October 13, 2020 8:25:26 AM'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -675,7 +691,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: 'https://www.google.com/search?source=hp&ei=9WyDX5SBNc-dlwS6ubaADA&q=500+ils+to+inr&oq=500+ils+to+inr&gs_lcp=CgZwc3ktYWIQDDIJCAAQyQMQFhAeOgUIABDJAzoCCAA6AgguOggILhDJAxCTAjoECC4QCjoGCAAQFhAeOgoIABDJAxBGEIICOggIIRAWEB0QHlDnRljhd2CxrgFoAXAAeACAAWeIAcEGkgEEMTMuMZgBAKABAaoBB2d3cy13aXqwAQA&sclient=psy-ab&ved=0ahUKEwjUz-qqsq3sAhXPzoUKHbqcDcAQ4dUDCAg'
+                      value: 'https://www.google.com/search?source=hp&ei=32OFX5SQMamLlwSnnLrwDA&q=500+ils+to+usd&oq=500+ils+to+usd&gs_lcp=CgZwc3ktYWIQDDIHCAAQRhCCAjoICAAQsQMQgwE6CwguELEDEMcBEKMCOgUILhCxAzoCCAA6BQgAELEDOggILhCxAxCTAjoCCC46BQguEJMCOgQILhAKOgQIABAKOgYIABAWEB5Q4agBWKjUAWDDiQJoAXAAeACAAUWIAfEFkgECMTSYAQCgAQGqAQdnd3Mtd2l6sAEA&sclient=psy-ab&ved=0ahUKEwjU-9b5kbHsAhWpxYUKHSeODs4Q4dUDCAg'
                       regular_expression: false
                     name: url
                     hidden: true
@@ -683,7 +699,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: 500 ils to inr - Google Search
+                      value: 500 ils to usd - Google Search
                       regular_expression: false
                     name: title
                     hidden: true
@@ -715,7 +731,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: '10025'
+                      value: '10034'
                       regular_expression: false
                     name: index
                     hidden: true
@@ -749,7 +765,7 @@ object_repository:
               custom_replay: ''
               class: Page
               visual_relations: ''
-              last_update_time: 'Sunday, October 11, 2020 8:38:23 PM'
+              last_update_time: 'Tuesday, October 13, 2020 8:25:26 AM'
               basic_identification:
                 property_ref:
                   - micclass
@@ -823,7 +839,7 @@ object_repository:
         custom_replay: ''
         class: Browser
         visual_relations: ''
-        last_update_time: 'Sunday, October 11, 2020 8:38:23 PM'
+        last_update_time: 'Tuesday, October 13, 2020 8:25:26 AM'
         basic_identification:
           property_ref:
             - micclass
@@ -915,7 +931,7 @@ object_repository:
             - value: ''
               visual_relations: ''
               parameter:
-                value: '"param1"'
+                value: '"value_in_usd"'
                 regular_expression: false
                 ignore_space: false
                 match_case: false
@@ -940,7 +956,7 @@ object_repository:
               inner_type: '0'
               type: STRING
         settings: ''
-        name: param1
+        name: value_in_usd
         type: Output
         class: VerifyObj
   parameters: []
